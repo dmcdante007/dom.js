@@ -1,5 +1,7 @@
-var sec_item = document.querySelector('.list-group-item:nth-child(2)');
-sec_item.style.backgroundColor = 'Green';
+var item = document.querySelectorAll('li');
+item[1].style.color = 'Red';
 
-var third_item = document.querySelector('.list-group-item:nth-child(3)');
-third_item.style.color = 'White';
+var odd = document.querySelectorAll('li:nth-child(odd)');
+for (var i = 0; i < odd.length; i++) {
+    odd[i].style.backgroundColor = 'Green';
+}
