@@ -1,31 +1,61 @@
-var newDiv = document.createElement('div');
-newDiv.className = 'Hello 1';
-newDiv.id = 'Hello';
-newDiv.setAttribute('title', 'HEllO');
-
-var newDivtext = document.createTextNode('HEllO'); //THis will be the text in the created div
-newDiv.appendChild(newDivtext);
-
-var container = document.querySelector('header .container');
-var h1 = document.querySelector('header  h1');
-
-container.insertBefore(newDiv, h1);
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
 
 
-var newDiv2 = document.createElement('div');
-newDiv2.className = 'List-group-item';
-newDiv2.id = 'item0';
-newDiv2.setAttribute('title', 'HEllO');
 
-var text1 = document.createTextNode('HEllO Bero');
-newDiv2.appendChild(text1);
+form.addEventListener('submit', addItem);
 
-// console.log(newDiv2);
+function addItem(e) {
+    e.preventDefault();
+    // console.log(1);
+
+    // Input value
+    var newItem = document.getElementById('item').value;
 
 
-var con = document.querySelector('ul');
-var h2 = document.querySelector('li');
+    // Create new li element
+    var li = document.createElement('li');
+    //add class
+    li.className = 'list-group-item';
 
-// console.log(con);
-// console.log(h2);
+    //Add text node with input value
+    li.appendChild(document.createTextNode(newItem));
+
+
+    //create delete button element
+
+    var del = document.createElement('button');
+
+    //adding an extra button beside them
+    var add = document.createElement('button');
+
+    add.className = 'btn btn-sm float-right add'
+    add.appendChild(document.createTextNode("+"));
+    li.appendChild(add);
+
+    //give clas name to del button
+    del.className = 'btn btn-danger btn-sm float-right delete';
+    //Giving button a name
+    del.appendChild(document.createTextNode('X'));
+    //Append button to li
+
+    li.appendChild(del);
+
+    itemList.appendChild(li);
+
+    //Item-listner to make delte the items 
+    itemList.addEventListener('click', removeItem);
+
+    //create fuciton to removeItem
+
+    function removeItem(e) {
+        if (e.target.classList.contains('delete')) {
+            if (confirm('Are you sure?')) {
+                var li = e.target.parentElement;
+                itemList.removeChild(li);
+            }
+        }
+    }
+}
+
 con.insertBefore(newDiv2, h2);
